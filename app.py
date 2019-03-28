@@ -6,13 +6,13 @@ cluster = Cluster(['cassandra'])
 session = cluster.connect()
 app = Flask(__name__)
 
-
+#this function aims to create the database in cassandra by grab the data from UK POLICE API in a sepecific month
 @app.route('/<mydata>', methods=['GET'])
 def hello(mydata):
     crime_url_template ='https://data.police.uk/api/crimes-street/all-crime?lat={lat}&lng={lng}&date={data}'
-    my_latitude = '51.52369'
+    my_latitude = '51.52369'               
     my_longitude = '-0.0395857'
-    crime_url = crime_url_template.format(lat = my_latitude,lng = my_longitude,data = mydata)
+    crime_url = crime_url_template.format(lat = my_latitude,lng = my_longitude,data = mydata) #pass the parameter to the request
     resp = requests.get(crime_url)
     if resp.ok:
         crimes = resp.json()
