@@ -17,7 +17,7 @@ export PROJECT_ID="$(gcloud config get-value project -q)"
 gcloud container clusters create cassandra --num-nodes=3 --machine-type "n1-standard-2"
 ```
 
-3.A Kubernetes service defines multiple sets of pods, allowing full systems to be deployed with one script.For this we will be using three files. The first will be a Headless service which will allow peer discovery i.e. the Cassandra pods will be able to find each other and form a ring. The second defines the Cassandra service itself, and the third is a Replication Controller which allows us to scale up and down the number of containers we want. Download these via the following commands:
+3.A Kubernetes service defines multiple sets of pods, allowing full systems to be deployed with one script.For this we will be using three files. 
 ```
 wget -O cassandra-peer-service.yml http://tinyurl.com/yyxnephy
 wget -O cassandra-service.yml http://tinyurl.com/y65czz8e
@@ -96,4 +96,14 @@ kubectl expose deployment pokemon-app --type=LoadBalancer --port 80 --target-por
 16.get the external IP
 ```
 kubectl get services
+```
+
+17.use the IP to visit the first web
+```
+35.230.155.106/<month>
+```
+
+18.visit the second web
+```
+35.230.155.106/<month>/<category>
 ```
